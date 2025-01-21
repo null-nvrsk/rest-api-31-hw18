@@ -19,12 +19,15 @@ public class BookCollectionTests extends BaseTest {
         );
         String userId = user.getUserId();
         String token = user.getToken();
+        String username = user.getUsername();
 
         bookStoreApi.deleteAllBooks(userId, token);
         bookStoreApi.addBook(bookIsbn, userId, token);
 
-        profilePage.openPage(user);
-        profilePage.deleteBook(bookTitle);
-        profilePage.verifyDeletion(bookTitle);
+        profilePage.openPage(user)
+                .verifyUserProfile(username)
+                .verifyBookInCollection(bookTitle)
+                .deleteBook(bookTitle)
+                .verifyDeletion(bookTitle);
     }
 }

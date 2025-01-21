@@ -6,8 +6,7 @@ import io.qameta.allure.Step;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class ProfilePage {
@@ -24,10 +23,22 @@ public class ProfilePage {
         return this;
     }
 
-    @Step("Удалить книгу \"{bookTitle}\"")
-    public ProfilePage deleteBook(String bookTitle) {
+    @Step("Проверить, что пользователь \"{username}\" авторизован")
+    public ProfilePage verifyUserProfile(String username) {
+        $("#userName-value").shouldHave(text(username));
+
+        return this;
+    }
+
+    @Step("Проверить, что книга \"{bookTitle}\" в коллекции")
+    public ProfilePage verifyBookInCollection(String bookTitle) {
         $(".ReactTable").shouldHave(text(bookTitle));
 
+        return this;
+    }
+
+    @Step("Удалить книгу \"{bookTitle}\"")
+    public ProfilePage deleteBook(String bookTitle) {
         $(".ReactTable #delete-record-undefined").click();
         $("#closeSmallModal-ok").click();
         Selenide.confirm();
