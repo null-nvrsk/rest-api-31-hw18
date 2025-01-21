@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class LoginResponseModel {
+public class UserLogin {
     private String userId;
     private String username;
     private String password;

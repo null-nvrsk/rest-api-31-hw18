@@ -1,9 +1,11 @@
 package com.demoqa.api;
 
 import com.demoqa.models.books.AddBookRequestModel;
-import com.demoqa.tests.UserData;
+import com.demoqa.models.books.IsbnElement;
 import io.qameta.allure.Step;
 import io.restassured.response.Response;
+
+import java.util.List;
 
 import static com.demoqa.specs.GeneralSpecs.*;
 import static io.restassured.RestAssured.given;
@@ -22,7 +24,11 @@ public class BookStoreApi {
     }
 
     @Step("Добавление книги (через API)")
-    public static Response addBook(AddBookRequestModel requestBody, String token) {
+    public static Response addBook(String isbn, String userId, String token) {
+        AddBookRequestModel requestBody = new AddBookRequestModel(
+                userId,
+                List.of(new IsbnElement(isbn))
+        );
         return given(requestSpec)
                 .header("Authorization", "Bearer " + token)
                 .body(requestBody)

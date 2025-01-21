@@ -8,10 +8,10 @@ import java.util.List;
 public class AddBookRequestModel {
 
     private String userId;
-    private List<IsbnElement> isbns;
+    private List<IsbnElement> collectionOfIsbns;
 
     public AddBookRequestModel(String userId, List<IsbnElement> isbns) {
-        this.isbns = isbns;
+        this.collectionOfIsbns = isbns;
         this.userId = userId;
     }
 }

@@ -1,22 +1,23 @@
 package com.demoqa.api;
 
 import com.demoqa.models.login.LoginRequestModel;
-import com.demoqa.models.login.LoginResponseModel;
+import com.demoqa.models.login.UserLogin;
 import io.qameta.allure.Step;
 
-import static com.demoqa.specs.GeneralSpecs.*;
+import static com.demoqa.specs.GeneralSpecs.requestSpec;
+import static com.demoqa.specs.GeneralSpecs.response200Spec;
 import static io.restassured.RestAssured.given;
 
 public class AccountApi {
 
     @Step("Авторизация (через API)")
-    public static LoginResponseModel login(LoginRequestModel loginRequest) {
+    public static UserLogin login(LoginRequestModel loginRequest) {
         return given(requestSpec)
                 .body(loginRequest)
                 .when()
                 .post("/Account/v1/Login")
                 .then()
                 .spec(response200Spec)
-                .extract().as(LoginResponseModel.class);
+                .extract().as(UserLogin.class);
     }
 }
