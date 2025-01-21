@@ -1,7 +1,6 @@
 package com.demoqa.tests;
 
 import com.demoqa.api.AccountApi;
-import com.demoqa.api.BookStoreApi;
 import com.demoqa.models.login.LoginRequestModel;
 import com.demoqa.models.login.UserLogin;
 import org.junit.jupiter.api.DisplayName;
@@ -21,8 +20,8 @@ public class BookCollectionTests extends BaseTest {
         String userId = user.getUserId();
         String token = user.getToken();
 
-        BookStoreApi.deleteAllBooks(userId, token);
-        BookStoreApi.addBook(bookIsbn, userId, token);
+        bookStoreApi.deleteAllBooks(userId, token);
+        bookStoreApi.addBook(bookIsbn, userId, token);
 
         profilePage.openPage(user);
         profilePage.deleteBook(bookTitle);

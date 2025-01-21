@@ -13,7 +13,7 @@ import static io.restassured.RestAssured.given;
 public class BookStoreApi {
 
     @Step("Удаление всех книг (через API)")
-    public static void deleteAllBooks(String userId, String token) {
+    public void deleteAllBooks(String userId, String token) {
         given(requestSpec)
                 .header("Authorization", "Bearer " + token)
                 .queryParams("UserId", userId)
@@ -24,7 +24,7 @@ public class BookStoreApi {
     }
 
     @Step("Добавление книги (через API)")
-    public static Response addBook(String isbn, String userId, String token) {
+    public Response addBook(String isbn, String userId, String token) {
         AddBookRequestModel requestBody = new AddBookRequestModel(
                 userId,
                 List.of(new IsbnElement(isbn))
