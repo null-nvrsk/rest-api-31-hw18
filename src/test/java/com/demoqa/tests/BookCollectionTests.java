@@ -7,7 +7,7 @@ import com.demoqa.models.login.UserLogin;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-public class BookCollectionTests extends TestBase {
+public class BookCollectionTests extends BaseTest {
 
     String bookIsbn = "9781449337711";
     String bookTitle = "Designing Evolvable Web APIs with ASP.NET";
