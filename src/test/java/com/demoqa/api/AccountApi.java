@@ -11,7 +11,9 @@ import static io.restassured.RestAssured.given;
 public class AccountApi {
 
     @Step("Авторизация (через API)")
-    public static UserLogin login(LoginRequestModel loginRequest) {
+    public static UserLogin login(String login, String password) {
+        LoginRequestModel loginRequest = new LoginRequestModel(login, password);
+
         return given(requestSpec)
                 .body(loginRequest)
                 .when()
