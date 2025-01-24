@@ -28,6 +28,7 @@ public class BaseTest {
         Configuration.baseUrl = "https://demoqa.com";
         RestAssured.baseURI = "https://demoqa.com";
 
+        Configuration.pageLoadStrategy = "eager";
         Configuration.browser = System.getProperty("browser", "chrome");
         Configuration.browserVersion = System.getProperty("browserVersion", "125");
         Configuration.browserSize = System.getProperty("browserSize", "1920x1080");

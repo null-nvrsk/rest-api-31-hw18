@@ -21,7 +21,8 @@ public class BookCollectionTests extends BaseTest {
         bookStoreApi.deleteAllBooks(userId, token);
         bookStoreApi.addBook(bookIsbn, userId, token);
 
-        profilePage.openPage(user)
+        profilePage.addAuthorizedUserCookies(user)
+                .openPage()
                 .verifyUserProfile(username)
                 .verifyBookInCollection(bookTitle)
                 .deleteBook(bookTitle)

@@ -11,13 +11,18 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class ProfilePage {
 
-    @Step("Открыть список книг пользователя")
-    public ProfilePage openPage(UserLogin user) {
+    @Step("Добавить куки авторизованного пользователя")
+    public ProfilePage addAuthorizedUserCookies(UserLogin user) {
         open("/favicon.ico");
         getWebDriver().manage().addCookie(new Cookie("userID", user.getUserId()));
         getWebDriver().manage().addCookie(new Cookie("expires", user.getExpires().toString()));
         getWebDriver().manage().addCookie(new Cookie("token", user.getToken()));
 
+        return this;
+    }
+
+    @Step("Открыть список книг пользователя")
+    public ProfilePage openPage() {
         open("/profile");
 
         return this;
